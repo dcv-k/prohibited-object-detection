@@ -2,3 +2,10 @@
     width: 100px;
     height: 100px;
 }
+
+.image-upload {
+    background-color: blueviolet;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
