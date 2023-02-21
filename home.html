@@ -21,33 +21,68 @@
             <li>account</li>
         </ul>
     </nav>
-    <section class="images">
-        <div class="image matched">
+    <section class="image-wrap">
+        <div class="selected image matched">
+            <span class="remove">X</span>
+            <span class="view-details">V</span>
+            <span class="release">O</span>
             <img class="img-fluid" src="./images/fire_hydrant_1200x1200.jpg" alt="fire_hydrant_1200x1200">
         </div>
-        <div class="image matched">
-            <img class="img-fluid" src="./images/fire_hydrant_1200x1200.jpg" alt="fire_hydrant_1200x1200">
-        </div>
-        <div class="image matched">
+        <div class="selected image matched">
             <img class="img-fluid" src="./images/fire_hydrant_1200x1200.jpg" alt="fire_hydrant_1200x1200">
         </div>
         <div class="image image-upload">upload</div>
-        <input type="file" id="input-file" style="display: none">
+        <input type="file" id="input-file" style="display: none" multiple="true">
     </section>
     <section class="action-panel">
-        <button>clear all</button>
-        <button>scan all</button>
+        <button id="btn-remove-all">remove all</button>
+        <button id="btn-scan-all">scan all</button>
     </section>
 
     <script>
         "use strict"
 
+        const removeSingle = (e) => {
+            e.target.parentElement.remove()
+        }
+
+        const removeAll = () => {
+            let elements = document.getElementsByClassName("selected")
+
+            for (let element of elements) {
+                element.remove()
+            }
+        }
+
         const handleUpload = () => {
             document.getElementById("input-file").click()
         }
 
+        const createThumbnail = (file) => {
+            const img = document.createElement("img")
+            img.classList.add("img-fluid")
+            img.file = file
+
+            const imageDiv = document.createElement("div")
+            imageDiv.classList.add("image")
+            imageDiv.appendChild(img)
+
+            const imageUpload = document.getElementsByClassName("image-upload")[0]
+            imageUpload.before(imageDiv)
+
+            const reader = new FileReader();
+            reader.onload = e => img.src = e.target.result
+            reader.readAsDataURL(file);
+        }
+
         const handleFiles = (e) => {
-            
+            const files = document.getElementById("input-file").files
+
+            for (const file of files) {
+                if(!file.type.startsWith("image/")) continue
+
+                createThumbnail(file)
+            }
         }
 
         const handleMatched = () => {
@@ -56,9 +91,14 @@
 
         document.getElementsByClassName("image-upload")[0].addEventListener("click", handleUpload)
         document.getElementById("input-file").addEventListener("change", handleFiles)
-        for (const element of document.getElementsByClassName("matched")) {
+        for (let element of document.getElementsByClassName("view-details")) {
             element.addEventListener("click", handleMatched)
         }
+        document.getElementById("btn-remove-all").addEventListener('click', removeAll)
+        for (let element of document.getElementsByClassName("remove")) {
+            element.addEventListener('click', removeSingle)
+        }
+        
     </script>
 </body>
 </html>

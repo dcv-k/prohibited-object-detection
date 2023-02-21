@@ -1,6 +1,15 @@
+nav {
+   display: grid;
+   grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
+}
+
 .image {
     width: 100px;
     height: 100px;
+}
+
+.image span {
+    cursor: pointer;
 }
 
 .image-upload {

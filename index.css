@@ -1,0 +1,10 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.section-login {
+    width: 300px;
+    height: 300px;
+}
