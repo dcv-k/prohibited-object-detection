@@ -1,6 +1,57 @@
+html,
+body {
+    height: 100%;
+}
+
+.test {
+    width: 200px;
+    height: 200px;
+}
+
+.new {
+    background-color: red;
+}
+
+.old {
+    background-color: green;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:visited {
+    color: inherit;
+}
+  
+a:hover {
+    text-decoration: none;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 10vh auto 10vh 5vh;
+    grid-template-areas: 
+        "nav"
+        "main"
+        "action"
+        "footer";
+}
+
 nav {
-   display: grid;
-   grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
+    grid-area: nav;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+
+    background-color: antiquewhite;
+}
+
+.image-wrap {
+    grid-area: main;
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .image {
@@ -14,7 +65,12 @@ nav {
 
 .image-upload {
     background-color: blueviolet;
-    width: 100px;
-    height: 100px;
     cursor: pointer;
+}
+
+.action-panel {
+    grid-area: action;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

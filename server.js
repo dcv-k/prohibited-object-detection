@@ -1,21 +1,11 @@
 const express = require("express")
 const cors = require("cors")
-const mysql = require("mysql2")
+const { connection } = require("./db-connection")
 const app = express()
 
 app.use(express.json());
 
-let connection = undefined
-
 app.listen(3000, () => {
-     connection = mysql.createConnection({
-        host: "localhost",
-        port: "3306",
-        user: "root",
-        password: "",
-        database: "prohibited_object_detection"
-    })
-
     if (connection) {
         console.log("connection made")
     }

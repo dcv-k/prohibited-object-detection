@@ -15,17 +15,14 @@
 </head>
 <body>
     <nav>
-        <ul>
-            <li>home</li>
-            <li>history</li>
-            <li>account</li>
-        </ul>
+        <a href="#">history</a>
+        <a href="#">account</a>
     </nav>
     <section class="image-wrap">
         <div class="selected image matched">
             <span class="remove">X</span>
             <span class="view-details">V</span>
-            <span class="release">O</span>
+            <span class="release">R</span>
             <img class="img-fluid" src="./images/fire_hydrant_1200x1200.jpg" alt="fire_hydrant_1200x1200">
         </div>
         <div class="selected image matched">
@@ -34,13 +31,35 @@
         <div class="image image-upload">upload</div>
         <input type="file" id="input-file" style="display: none" multiple="true">
     </section>
+    <section>
+        <div class="test new"></div>
+        <button id="btn-test">test</button>
+    </section>
     <section class="action-panel">
         <button id="btn-remove-all">remove all</button>
         <button id="btn-scan-all">scan all</button>
     </section>
+    <footer>
+        <p>footer text</p>
+    </footer>
 
     <script>
         "use strict"
+
+        const newClick = () => alert("new")
+        const oldClick = () => alert("old")
+        const handleTest = () => {
+            alert("test")
+            let element = document.getElementsByClassName("test")[0]
+            element.classList.remove("new")
+            element.classList.add("old")
+        }
+
+        document.getElementsByClassName("new")[0].addEventListener("click", newClick)
+        if(document.getElementsByClassName("old")[0]) {
+            document.getElementsByClassName("old")[0].addEventListener("click", oldClick)
+        }
+        document.getElementById("btn-test").addEventListener("click", handleTest)
 
         const removeSingle = (e) => {
             e.target.parentElement.remove()

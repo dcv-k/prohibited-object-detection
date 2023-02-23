@@ -1,10 +1,15 @@
+html {
+    height: 100%;
+}
+
 body {
-    display: flex;
-    justify-content: center;
-    align-content: center;
+    min-height: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
 }
 
 .section-login {
-    width: 300px;
-    height: 300px;
+    padding: 50px;
+    border: solid red 1px;
 }
